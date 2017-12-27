@@ -9,8 +9,8 @@ import time
 gdax = getattr (ccxt, 'gdax') ()
 bithumb = getattr (ccxt, 'bithumb') ()
 markets = bithumb.load_markets ()
-markets = bithumb.load_markets ()
-
+#market1 = bitso.load_markets ()
+#print(market1)
 while 1:
     gdax_info=gdax.fetch_ticker('BTC/USD')
     bithumb_info=bithumb.fetch_ticker('BTC/KRW')
@@ -38,9 +38,15 @@ while 1:
     spread=(-stampXRP+humbXRP)/stampXRP
     stampLTC=bitstamp.fetch_ticker('LTC/USD')['bid']
     spread2=(stampLTC-bLTC)/bLTC
+    stampETH=bitstamp.fetch_ticker('ETH/USD')['bid']
+    spreadETH=(stampETH-bETH)/bETH
+    #-----------------------------
     BTCash_gdax=gdax.fetch_ticker('BCH/USD')['bid']
     BTCash_humb=bithumb.fetch_ticker('BCH/KRW')['bid']/rate
     BTCash_stamp=bitstamp.fetch_ticker('BCH/USD')['bid']
+    spread_g=(-BTCash_gdax+BTCash_humb)/BTCash_gdax
+    spread_s=(-BTCash_stamp+BTCash_humb)/BTCash_stamp
+    
     print('GDAX_BTC:',gdax_price,'Bithumb_BTC:',bithumb_price)
     print('benifit:',benifit)    
     print('LTC_gdax',gLTC,'LTC_humb:',bLTC)
@@ -51,7 +57,9 @@ while 1:
     print('spread:',spread)
     print('stampsLTC',stampLTC,'LTC_humb:',bLTC)
     print('Spread_LTC(stamp)',spread2)
+    print('Spread_ETH(stamp)',spreadETH)
     print('_______________________')
     print('BCH:','gdax:',BTCash_gdax,'stamp:',BTCash_stamp,'humb:',BTCash_humb)
+    print('spread_gdax:',spread_g,'spread_stamp:',spread_s)
     print('_______________________')
     time.sleep(5)
