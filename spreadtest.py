@@ -22,8 +22,8 @@ while 1:
     bLTC=bithumb.fetch_ticker('LTC/KRW')['bid']/rate
     bETH=bithumb.fetch_ticker('ETH/KRW')['bid']/rate
     benifit=(-gdax_price+bithumb_price)/gdax_price
-    spread_LTC=(gLTC-bLTC)/bLTC
-    spread_ETH=(gETH-bETH)/bETH
+    spread_LTC=(gLTC-bLTC)/gLTC
+    spread_ETH=(gETH-bETH)/gETH
     if spread_LTC>spread_ETH:
         choose='spread_LTC'
         spread=spread_LTC
@@ -37,9 +37,9 @@ while 1:
     stampXRP=bitstamp.fetch_ticker('XRP/USD')['bid']
     spread=(-stampXRP+humbXRP)/stampXRP
     stampLTC=bitstamp.fetch_ticker('LTC/USD')['bid']
-    spread2=(stampLTC-bLTC)/bLTC
+    spread2=(stampLTC-bLTC)/stampLTC
     stampETH=bitstamp.fetch_ticker('ETH/USD')['bid']
-    spreadETH=(stampETH-bETH)/bETH
+    spreadETH=(stampETH-bETH)/stampETH
     #-----------------------------
     BTCash_gdax=gdax.fetch_ticker('BCH/USD')['bid']
     BTCash_humb=bithumb.fetch_ticker('BCH/KRW')['bid']/rate
